@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,35 +7,49 @@
   <title>Countdown Timer</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <main class="timer-container">
-    <h1>Countdown Timer</h1>
 
+    <h1>COUNTDOWN TIMER</h1>
+
+    <!-- 타이머 숫자 -->
     <div class="timer-display" id="display">
-      05:00
+      00:05:00
     </div>
 
+    <!-- 시간 설정 -->
     <div class="input-area">
-      <input type="number" id="minutes" min="0" max="99" value="5">
+
+      <input type="number" id="hours" min="0" max="99" value="0">
+      <span>시</span>
+
+      <input type="number" id="minutes" min="0" max="59" value="5">
       <span>분</span>
 
       <input type="number" id="seconds" min="0" max="59" value="0">
       <span>초</span>
+
     </div>
 
+    <!-- 버튼 -->
     <div class="buttons">
       <button id="startBtn">시작</button>
       <button id="pauseBtn">일시정지</button>
       <button id="resetBtn">리셋</button>
     </div>
 
+    <!-- 빠른 추가 -->
     <div class="quick-buttons">
       <button id="add10">+10초</button>
       <button id="add60">+1분</button>
     </div>
+
   </main>
 
   <script src="script.js"></script>
+
 </body>
 </html>
+```
