@@ -1,7 +1,5 @@
-```javascript
 const display = document.getElementById("display");
 
-const hoursInput = document.getElementById("hours");
 const minutesInput = document.getElementById("minutes");
 const secondsInput = document.getElementById("seconds");
 
@@ -12,92 +10,115 @@ const resetBtn = document.getElementById("resetBtn");
 const add10Btn = document.getElementById("add10");
 const add60Btn = document.getElementById("add60");
 
-const timerContainer = document.querySelector(".timer-container");
+const timerContainer =
+  document.querySelector(".timer-container");
 
 let totalSeconds = 5 * 60;
+
 let timer = null;
+
 let isRunning = false;
 
 
-// 타이머 표시
+// =========================
+// 화면 표시
+// =========================
+
 function updateDisplay() {
 
-  const hours = Math.floor(totalSeconds / 3600);
-
   const minutes =
-    Math.floor((totalSeconds % 3600) / 60);
+    Math.floor(totalSeconds / 60);
 
   const seconds =
     totalSeconds % 60;
 
   display.textContent =
-    `${String(hours).padStart(2, "0")}:` +
-    `${String(minutes).padStart(2, "0")}:` +
-    `${String(seconds).padStart(2, "0")}`;
+    String(minutes).padStart(2, "0") +
+    ":" +
+    String(seconds).padStart(2, "0");
 }
 
 
-// 입력한 시간 가져오기
+// =========================
+// 입력값 가져오기
+// =========================
+
 function getInputTime() {
 
-  const hours =
-    Math.max(0, Number(hoursInput.value) || 0);
+  let minutes =
+    Number(minutesInput.value) || 0;
 
-  const minutes =
-    Math.min(
-      59,
-      Math.max(0, Number(minutesInput.value) || 0)
-    );
+  let seconds =
+    Number(secondsInput.value) || 0;
 
-  const seconds =
-    Math.min(
-      59,
-      Math.max(0, Number(secondsInput.value) || 0)
-    );
+  minutes = Math.max(0, minutes);
 
-  return hours * 3600 + minutes * 60 + seconds;
+  seconds =
+    Math.min(59, Math.max(0, seconds));
+
+  return minutes * 60 + seconds;
 }
 
 
-// 입력한 시간 적용
-function setTimeFromInputs() {
+// =========================
+// 입력창 업데이트
+// =========================
 
-  if (isRunning) return;
-
-  totalSeconds = getInputTime();
-
-  timerContainer.classList.remove("finished");
-
-  updateDisplay();
-}
-
-
-// 입력창에 현재 시간 표시
 function updateInputs() {
 
-  hoursInput.value =
-    Math.floor(totalSeconds / 3600);
-
   minutesInput.value =
-    Math.floor((totalSeconds % 3600) / 60);
+    Math.floor(totalSeconds / 60);
 
   secondsInput.value =
     totalSeconds % 60;
 }
 
 
-// 타이머 시작
-function startTimer() {
+// =========================
+// 입력값 적용
+// =========================
 
-  if (isRunning) return;
+function setTimeFromInputs() {
 
-  if (totalSeconds <= 0) {
-    totalSeconds = getInputTime();
+  if (isRunning) {
+    return;
   }
 
-  if (totalSeconds <= 0) return;
+  totalSeconds =
+    getInputTime();
 
-  timerContainer.classList.remove("finished");
+  timerContainer.classList.remove(
+    "finished"
+  );
+
+  updateDisplay();
+}
+
+
+// =========================
+// 시작
+// =========================
+
+function startTimer() {
+
+  if (isRunning) {
+    return;
+  }
+
+  if (totalSeconds <= 0) {
+
+    totalSeconds =
+      getInputTime();
+
+  }
+
+  if (totalSeconds <= 0) {
+    return;
+  }
+
+  timerContainer.classList.remove(
+    "finished"
+  );
 
   isRunning = true;
 
@@ -115,20 +136,28 @@ function startTimer() {
 
       updateDisplay();
 
-      timerContainer.classList.add("finished");
+      timerContainer.classList.add(
+        "finished"
+      );
 
-      alert("⏰ 시간이 끝났습니다!");
+      alert("시간이 끝났습니다!");
+
     }
 
   }, 1000);
 }
 
 
-// 타이머 정지
+// =========================
+// 정지
+// =========================
+
 function stopTimer() {
 
   if (timer !== null) {
+
     clearInterval(timer);
+
     timer = null;
   }
 
@@ -136,31 +165,46 @@ function stopTimer() {
 }
 
 
+// =========================
 // 일시정지
+// =========================
+
 function pauseTimer() {
+
   stopTimer();
 }
 
 
+// =========================
 // 리셋
+// =========================
+
 function resetTimer() {
 
   stopTimer();
 
-  timerContainer.classList.remove("finished");
+  timerContainer.classList.remove(
+    "finished"
+  );
 
-  totalSeconds = getInputTime();
+  totalSeconds =
+    getInputTime();
 
   updateDisplay();
 }
 
 
-// 10초 / 1분 추가
+// =========================
+// 시간 추가
+// =========================
+
 function addTime(seconds) {
 
   totalSeconds += seconds;
 
-  timerContainer.classList.remove("finished");
+  timerContainer.classList.remove(
+    "finished"
+  );
 
   updateDisplay();
 
@@ -168,29 +212,39 @@ function addTime(seconds) {
 }
 
 
-// 버튼 이벤트
+// =========================
+// 버튼
+// =========================
 
-startBtn.addEventListener("click", startTimer);
-
-pauseBtn.addEventListener("click", pauseTimer);
-
-resetBtn.addEventListener("click", resetTimer);
-
-add10Btn.addEventListener("click", () => {
-  addTime(10);
-});
-
-add60Btn.addEventListener("click", () => {
-  addTime(60);
-});
-
-
-// 입력 이벤트
-
-hoursInput.addEventListener(
-  "change",
-  setTimeFromInputs
+startBtn.addEventListener(
+  "click",
+  startTimer
 );
+
+pauseBtn.addEventListener(
+  "click",
+  pauseTimer
+);
+
+resetBtn.addEventListener(
+  "click",
+  resetTimer
+);
+
+add10Btn.addEventListener(
+  "click",
+  () => addTime(10)
+);
+
+add60Btn.addEventListener(
+  "click",
+  () => addTime(60)
+);
+
+
+// =========================
+// 입력
+// =========================
 
 minutesInput.addEventListener(
   "change",
@@ -206,4 +260,3 @@ secondsInput.addEventListener(
 // 처음 실행
 
 updateDisplay();
-```
