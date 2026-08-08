@@ -4,138 +4,268 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
+
+  width: 100vw;
+  height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: #0f1117;
-  color: #ffffff;
+  background: #0b0d10;
+  color: #ffd43b;
+
   font-family: Arial, sans-serif;
+
+  overflow: hidden;
 }
+
+/* 타이머 박스 */
 
 .timer-container {
-  width: min(90%, 500px);
-  padding: 40px 30px;
+  width: 520px;
+  max-width: 90%;
 
-  background: #181b23;
-  border: 1px solid #292d38;
-  border-radius: 24px;
+  padding: 45px 35px;
+
+  background: #15181d;
+
+  border: 1px solid #333943;
+  border-radius: 25px;
 
   text-align: center;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6);
 }
+
+/* 제목 */
 
 h1 {
   margin: 0 0 30px;
-  font-size: 28px;
+
+  color: #ffd43b;
+
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 3px;
 }
+
+/* 타이머 숫자 */
 
 .timer-display {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 
-  font-size: clamp(60px, 15vw, 100px);
+  color: #ffd43b;
+
+  font-size: 82px;
   font-weight: bold;
-  letter-spacing: 4px;
-  color: #64ffda;
+
+  letter-spacing: 5px;
+
+  font-variant-numeric: tabular-nums;
+
+  text-shadow:
+    0 0 15px rgba(255, 212, 59, 0.2);
 }
+
+/* 시간 입력 */
 
 .input-area {
   display: flex;
+
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 25px;
 
-  color: #aaa;
+  gap: 18px;
+
+  margin-bottom: 30px;
 }
 
-.input-area input {
-  width: 80px;
-  padding: 12px;
+.input-group {
+  display: flex;
+  align-items: center;
 
-  border: 1px solid #343946;
+  gap: 7px;
+}
+
+.input-group span {
+  color: #ffd43b;
+
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 75px;
+  height: 48px;
+
+  padding: 8px;
+
+  background: #0d0f12;
+
+  color: #ffd43b;
+
+  border: 1px solid #3b3f47;
   border-radius: 10px;
 
-  background: #0f1117;
-  color: white;
-
   font-size: 20px;
+  font-weight: bold;
+
   text-align: center;
 }
 
-.input-area input:focus {
+.input-group input:focus {
   outline: none;
+
   border-color: #ffd43b;
+
+  box-shadow:
+    0 0 10px rgba(255, 212, 59, 0.15);
 }
 
-.buttons,
-.quick-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+/* 숫자 입력 화살표 제거 */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
+
+/* 기본 버튼 */
 
 .buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
   margin-bottom: 15px;
 }
 
 button {
-  padding: 12px 20px;
-
   border: none;
+
+  padding: 13px 22px;
+
   border-radius: 10px;
 
-  background: #292e39;
-  color: white;
+  color: #ffffff;
 
   font-size: 16px;
+  font-weight: bold;
+
   cursor: pointer;
 
-  transition: 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.15s;
 }
 
 button:hover {
-  background: #3a404d;
   transform: translateY(-2px);
 }
 
-#startBtn {
-  background: #00b894;
+button:active {
+  transform: translateY(0);
 }
 
-#startBtn:hover {
-  background: #00a383;
+/* 시작 */
+
+.start {
+  background: #00a878;
 }
 
-#pauseBtn {
-  background: #6c5ce7;
+.start:hover {
+  background: #00c58d;
 }
 
-#pauseBtn:hover {
-  background: #5b4bd1;
+/* 일시정지 */
+
+.pause {
+  background: #6655d9;
 }
 
-#resetBtn {
-  background: #d63031;
+.pause:hover {
+  background: #7766ee;
 }
 
-#resetBtn:hover {
-  background: #c32627;
+/* 리셋 */
+
+.reset {
+  background: #c0392b;
+}
+
+.reset:hover {
+  background: #e04b3d;
+}
+
+/* 빠른 추가 */
+
+.quick-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
 }
 
 .quick-buttons button {
-  flex: 1;
-  max-width: 130px;
+  min-width: 110px;
+
+  background: #292e36;
+
+  color: #ffd43b;
 }
 
-@media (max-width: 400px) {
+.quick-buttons button:hover {
+  background: #383e48;
+}
+
+/* 시간이 끝났을 때 */
+
+.timer-container.finished .timer-display {
+  color: #ff4d4d;
+
+  animation: blink 0.6s infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.35;
+  }
+}
+
+/* 작은 화면 */
+
+@media (max-width: 600px) {
+
   .timer-container {
     padding: 30px 20px;
   }
 
-  .buttons button {
-    padding: 10px 14px;
-    font-size: 14px;
+  .timer-display {
+    font-size: 55px;
+  }
+
+  .input-area {
+    gap: 8px;
+  }
+
+  .input-group {
+    gap: 3px;
+  }
+
+  .input-group input {
+    width: 60px;
+  }
+
+  button {
+    padding: 11px 14px;
   }
 }
