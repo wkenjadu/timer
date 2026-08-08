@@ -4,7 +4,6 @@
 
 body {
   margin: 0;
-
   width: 100vw;
   height: 100vh;
 
@@ -12,101 +11,73 @@ body {
   justify-content: center;
   align-items: center;
 
-  background: #0b0d10;
-  color: #ffd43b;
+  background-color: #000000 !important;
+  color: #FFD700 !important;
 
   font-family: Arial, sans-serif;
-
-  overflow: hidden;
 }
-
-/* 타이머 박스 */
 
 .timer-container {
   width: 520px;
   max-width: 90%;
-
   padding: 45px 35px;
 
-  background: #15181d;
+  background-color: #151515 !important;
 
-  border: 1px solid #333943;
+  border: 1px solid #333333;
   border-radius: 25px;
 
   text-align: center;
-
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
 /* 제목 */
 
 h1 {
-  margin: 0 0 30px;
-
-  color: #ffd43b;
-
-  font-size: 26px;
-  font-weight: bold;
-  letter-spacing: 3px;
+  color: #FFD700 !important;
 }
 
 /* 타이머 숫자 */
 
 .timer-display {
-  margin-bottom: 35px;
-
-  color: #ffd43b;
+  color: #FFD700 !important;
 
   font-size: 82px;
   font-weight: bold;
 
   letter-spacing: 5px;
-
-  font-variant-numeric: tabular-nums;
-
-  text-shadow:
-    0 0 15px rgba(255, 212, 59, 0.2);
 }
 
-/* 시간 입력 */
+/* 입력 영역 */
 
 .input-area {
   display: flex;
-
   justify-content: center;
   align-items: center;
 
   gap: 18px;
 
-  margin-bottom: 30px;
+  color: #FFD700 !important;
 }
 
 .input-group {
   display: flex;
   align-items: center;
-
   gap: 7px;
 }
 
 .input-group span {
-  color: #ffd43b;
-
-  font-size: 16px;
-  font-weight: bold;
+  color: #FFD700 !important;
 }
 
 .input-group input {
   width: 75px;
   height: 48px;
 
-  padding: 8px;
+  background-color: #000000 !important;
+  color: #FFD700 !important;
 
-  background: #0d0f12;
+  border: 1px solid #FFD700;
 
-  color: #ffd43b;
-
-  border: 1px solid #3b3f47;
   border-radius: 10px;
 
   font-size: 20px;
@@ -115,157 +86,55 @@ h1 {
   text-align: center;
 }
 
-.input-group input:focus {
-  outline: none;
-
-  border-color: #ffd43b;
-
-  box-shadow:
-    0 0 10px rgba(255, 212, 59, 0.15);
-}
-
-/* 숫자 입력 화살표 제거 */
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* 기본 버튼 */
-
-.buttons {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  margin-bottom: 15px;
-}
+/* 버튼 */
 
 button {
   border: none;
+  border-radius: 10px;
 
   padding: 13px 22px;
 
-  border-radius: 10px;
-
-  color: #ffffff;
+  color: #000000 !important;
 
   font-size: 16px;
   font-weight: bold;
 
   cursor: pointer;
-
-  transition:
-    background 0.2s,
-    transform 0.15s;
 }
-
-button:hover {
-  transform: translateY(-2px);
-}
-
-button:active {
-  transform: translateY(0);
-}
-
-/* 시작 */
 
 .start {
-  background: #00a878;
+  background-color: #FFD700 !important;
 }
-
-.start:hover {
-  background: #00c58d;
-}
-
-/* 일시정지 */
 
 .pause {
-  background: #6655d9;
+  background-color: #FFD700 !important;
 }
-
-.pause:hover {
-  background: #7766ee;
-}
-
-/* 리셋 */
 
 .reset {
-  background: #c0392b;
-}
-
-.reset:hover {
-  background: #e04b3d;
-}
-
-/* 빠른 추가 */
-
-.quick-buttons {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 10px;
+  background-color: #FFD700 !important;
 }
 
 .quick-buttons button {
-  min-width: 110px;
-
-  background: #292e36;
-
-  color: #ffd43b;
+  background-color: #FFD700 !important;
 }
 
-.quick-buttons button:hover {
-  background: #383e48;
+/* 버튼 영역 */
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0 15px;
 }
 
-/* 시간이 끝났을 때 */
+.quick-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* 종료 */
 
 .timer-container.finished .timer-display {
-  color: #ff4d4d;
-
-  animation: blink 0.6s infinite alternate;
-}
-
-@keyframes blink {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0.35;
-  }
-}
-
-/* 작은 화면 */
-
-@media (max-width: 600px) {
-
-  .timer-container {
-    padding: 30px 20px;
-  }
-
-  .timer-display {
-    font-size: 55px;
-  }
-
-  .input-area {
-    gap: 8px;
-  }
-
-  .input-group {
-    gap: 3px;
-  }
-
-  .input-group input {
-    width: 60px;
-  }
-
-  button {
-    padding: 11px 14px;
-  }
+  color: #ff3333 !important;
 }
