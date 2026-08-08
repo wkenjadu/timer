@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Countdown Timer</title>
-
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,77 +13,40 @@
 
     <h1>COUNTDOWN TIMER</h1>
 
-    <!-- 타이머 -->
     <div class="timer-display" id="display">
-      00:05:00
+      05:00
     </div>
 
-    <!-- 시간 설정 -->
+    <!-- 분 / 초만 -->
     <div class="input-area">
 
-      <div class="time-input">
-        <input
-          type="number"
-          id="hours"
-          min="0"
-          max="99"
-          value="0"
-        >
-        <span>시</span>
-      </div>
+      <input
+        type="number"
+        id="minutes"
+        min="0"
+        max="999"
+        value="5"
+      >
 
-      <div class="time-input">
-        <input
-          type="number"
-          id="minutes"
-          min="0"
-          max="59"
-          value="5"
-        >
-        <span>분</span>
-      </div>
-
-      <div class="time-input">
-        <input
-          type="number"
-          id="seconds"
-          min="0"
-          max="59"
-          value="0"
-        >
-        <span>초</span>
-      </div>
+      <input
+        type="number"
+        id="seconds"
+        min="0"
+        max="59"
+        value="0"
+      >
 
     </div>
 
-    <!-- 버튼 -->
     <div class="buttons">
-
-      <button id="startBtn">
-        시작
-      </button>
-
-      <button id="pauseBtn">
-        일시정지
-      </button>
-
-      <button id="resetBtn">
-        리셋
-      </button>
-
+      <button id="startBtn">시작</button>
+      <button id="pauseBtn">일시정지</button>
+      <button id="resetBtn">리셋</button>
     </div>
 
-    <!-- 빠른 추가 -->
     <div class="quick-buttons">
-
-      <button id="add10">
-        +10초
-      </button>
-
-      <button id="add60">
-        +1분
-      </button>
-
+      <button id="add10">+10초</button>
+      <button id="add60">+1분</button>
     </div>
 
   </div>
